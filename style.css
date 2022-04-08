@@ -1,0 +1,64 @@
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+}
+
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgb(238, 174, 202);
+    background: radial-gradient(circle, rgba(238, 174, 202, 1) 0%, rgba(148, 187, 233, 1) 100%);
+    /* background-color: coral; */
+    width: 100vw;
+    height: 100vh;
+}
+
+.box {
+    border-radius: 15px;
+    width: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.box-wrapper {
+    display: flex;
+    flex-direction: column;
+}
+
+.box-psw {
+    display: flex;
+    justify-content: flex-start;
+    margin-bottom: 20px;
+    height: 50px;
+    background-color: aquamarine;
+
+}
+
+.box-property {
+    height: 200px;
+   
+   
+}
+
+.control-style {
+    background-color:whitesmoke ; /*revisar con o sin el color del input*/
+    border: none;
+    padding: 15px 215px 15px 15px ; 
+    outline: none;  /* saca el borde cuando se clickea al input */
+    border-radius: 15px;
+}
+
+.box-bg {
+    background-color: whitesmoke;
+    /* box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2); */
+    box-shadow:1px 1px 1px 1px rgba(0, 0, 0, 0.05);
+
+}
