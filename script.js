@@ -4,9 +4,6 @@ var divPasswordGenerated = document.createElement('div'); // sacar o no el div d
 var inputPassword = document.createElement('input');
 var btnCopy = document.createElement('button');
 var btnReset = document.createElement('button');
-var form = document.createElement('form');
-var fieldsetLength = document.createElement('fieldset');
-var fieldsetRules = document.createElement('fieldset');
 var divPaswordProperty = document.createElement('div');
 divPasswordGenerated.appendChild(inputPassword);
 inputPassword.appendChild(btnCopy);
@@ -19,38 +16,31 @@ divPaswordProperty.classList.add('box', 'box-bg', 'box-property'); //no me conve
 inputPassword.classList.add('control-style');
 divWrapper.appendChild(divPasswordGenerated);
 divWrapper.appendChild(divPaswordProperty);
-divPaswordProperty.appendChild(form);
-form.appendChild(fieldsetLength);
-form.appendChild(fieldsetRules);
 divContainer.appendChild(divWrapper);
 document.body.appendChild(divContainer);
 var charLength = [12, 9, 6];
-for (var _i = 0, charLength_1 = charLength; _i < charLength_1.length; _i++) {
-    var elem = charLength_1[_i];
-    var divLengths = document.createElement('div');
-    var input = document.createElement('input');
-    input.setAttribute('type', 'radio');
-    input.setAttribute('value', 'elem');
-    input.setAttribute('name', 'lenght');
-    divLengths.appendChild(input);
-    fieldsetLength.appendChild(divLengths);
-    var label = document.createElement('label');
-    var textLabel = document.createTextNode("".concat(elem, " caracteres"));
-    label.appendChild(textLabel);
-    divLengths.appendChild(label);
-}
 var optionRules = ["Solo letras", "Lectura simple", "Todos los caracteres"];
-for (var _a = 0, optionRules_1 = optionRules; _a < optionRules_1.length; _a++) {
-    var elem = optionRules_1[_a];
-    var divRules = document.createElement('div');
-    var input = document.createElement('input');
-    input.setAttribute('type', 'radio');
-    input.setAttribute('value', 'elem');
-    input.setAttribute('name', 'option');
-    divRules.appendChild(input);
-    fieldsetRules.appendChild(divRules);
-    var label = document.createElement('label');
-    var textLabel = document.createTextNode("".concat(elem));
-    label.appendChild(textLabel);
-    divRules.appendChild(label);
-}
+var charType = ["Mayusculas", "Minusculas", "Numeros", "Simbolos"];
+var createFieldset = function (array, name, type) {
+    var form = document.createElement('form');
+    divPaswordProperty.appendChild(form);
+    var fieldset = document.createElement('fieldset');
+    form.appendChild(fieldset);
+    for (var _i = 0, array_1 = array; _i < array_1.length; _i++) {
+        var elem = array_1[_i];
+        var div = document.createElement('div');
+        var input = document.createElement('input');
+        input.setAttribute('type', type);
+        input.setAttribute('value', 'elem');
+        input.setAttribute('name', name);
+        div.appendChild(input);
+        fieldset.appendChild(div);
+        var label = document.createElement('label');
+        var textLabel = document.createTextNode("".concat(elem));
+        label.appendChild(textLabel);
+        div.appendChild(label);
+    }
+};
+createFieldset(charLength, 'length', 'radio');
+createFieldset(optionRules, 'option', 'radio');
+createFieldset(charType, 'charType', 'checkbox');
