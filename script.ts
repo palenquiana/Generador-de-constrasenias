@@ -4,13 +4,17 @@ const divPasswordGenerated = document.createElement('div'); // sacar o no el div
 const inputPassword = document.createElement('input');
 const btnCopy = document.createElement('button');
 const btnReset = document.createElement('button');
-
-const divPaswordProperty = document.createElement('div');
-
+const divPaswordProperty = document.createElement('div'); //cambiar nombre a uno que especifque es es el div del formulario
+const divForm =document.createElement('div');
+const formTitle = document.createElement('h2');
+const formText = document.createTextNode("Personalice su contraseña");
 
 divPasswordGenerated.appendChild(inputPassword);
 inputPassword.appendChild(btnCopy);
 inputPassword.appendChild(btnReset);
+formTitle.appendChild(formText);
+divPaswordProperty.appendChild(formTitle);
+divPaswordProperty.appendChild(divForm);
 
 
 //Clases
@@ -19,9 +23,11 @@ divWrapper.classList.add('box-wrapper');
 divPasswordGenerated.classList.add('box', 'box-bg', 'box-psw');
 divPaswordProperty.classList.add('box', 'box-bg', 'box-property'); //no me convence el style del nombre de la clase
 inputPassword.classList.add('control-style');
+divForm.classList.add('box-form');
 
 divWrapper.appendChild(divPasswordGenerated);
 divWrapper.appendChild(divPaswordProperty);
+
 
 divContainer.appendChild(divWrapper);
 
@@ -32,11 +38,18 @@ const charLength = [12, 9, 6];
 const optionRules = ["Solo letras", "Lectura simple", "Todos los caracteres"];
 const charType = ["Mayusculas", "Minusculas", "Numeros", "Simbolos"];
 
-const createFieldset = (array, name, type) => {
+const createFieldset = (array, name, type, title) => {
     const form = document.createElement('form');
-    divPaswordProperty.appendChild(form);
+    divForm.appendChild(form);
     const fieldset = document.createElement('fieldset');
     form.appendChild(fieldset);
+    const fieldsetTitle = document.createElement('h3');
+    const textTitle = document.createTextNode(title);
+    fieldsetTitle.appendChild(textTitle);
+    fieldset.appendChild(fieldsetTitle);
+    let contador= 0;
+
+
 
     for (const elem of array) {
         const div = document.createElement('div');
@@ -47,12 +60,29 @@ const createFieldset = (array, name, type) => {
         div.appendChild(input);
         fieldset.appendChild(div);
         const label = document.createElement('label');
-        const textLabel = document.createTextNode(`${elem}`);
+        let textLabel;
+        if (name === 'length') {
+            textLabel = document.createTextNode(`${elem} caracteres`);
+        }
+        else{
+            textLabel = document.createTextNode(`${elem}`);
+        }
         label.appendChild(textLabel);
         div.appendChild(label);
+        if (contador === 0) {
+            input.setAttribute('checked','true');
+        }
+        contador++;
+
+        
     }
+ 
+    
+    
+
+
 }
 
-createFieldset(charLength, 'length', 'radio');
-createFieldset(optionRules, 'option', 'radio');
-createFieldset(charType, 'charType', 'checkbox');
+createFieldset(charLength, 'length', 'radio', 'Longitud');
+createFieldset(optionRules, 'option', 'radio', 'Reglas');
+createFieldset(charType, 'charType', 'checkbox','Caracteres');
