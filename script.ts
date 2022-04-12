@@ -10,8 +10,8 @@ const formTitle = document.createElement('h2');
 const formText = document.createTextNode("Personalice su contraseña");
 
 divPasswordGenerated.appendChild(inputPassword);
-inputPassword.appendChild(btnCopy);
-inputPassword.appendChild(btnReset);
+divPasswordGenerated.appendChild(btnCopy);
+divPasswordGenerated.appendChild(btnReset);
 formTitle.appendChild(formText);
 divPaswordProperty.appendChild(formTitle);
 divPaswordProperty.appendChild(divForm);
@@ -34,9 +34,18 @@ divContainer.appendChild(divWrapper);
 
 document.body.appendChild(divContainer);
 
+const finalValues = {
+    long: null,
+    rule: null,
+    char: []
+}
+
 const charLength = [12, 9, 6];
 const optionRules = ["Solo letras", "Lectura simple", "Todos los caracteres"];
 const charType = ["Mayusculas", "Minusculas", "Numeros", "Simbolos"];
+
+
+
 
 const createFieldset = (array, name, type, title) => {
     const form = document.createElement('form');
@@ -47,15 +56,13 @@ const createFieldset = (array, name, type, title) => {
     const textTitle = document.createTextNode(title);
     fieldsetTitle.appendChild(textTitle);
     fieldset.appendChild(fieldsetTitle);
-    let contador= 0;
-
-
-
-    for (const elem of array) {
+    for (let i = 0; i < array.length; i++) {
+        const elem = array[i];
         const div = document.createElement('div');
         const input = document.createElement('input');
         input.setAttribute('type', type);
-        input.setAttribute('value', 'elem');
+        input.setAttribute('id', elem);
+        input.setAttribute('value', elem);
         input.setAttribute('name', name);
         div.appendChild(input);
         fieldset.appendChild(div);
@@ -69,20 +76,78 @@ const createFieldset = (array, name, type, title) => {
         }
         label.appendChild(textLabel);
         div.appendChild(label);
-        if (contador === 0) {
-            input.setAttribute('checked','true');
-        }
-        contador++;
-
         
+        if (i === 0) {
+            input.setAttribute('checked','true'); 
+        }
+
+        // input.addEventListener('change', (e) => {
+        //     // switch(name) {
+        //     //     case 'long': finalValues.long = e.target.value; break;
+        //     //     case 'char': finalValues.char = e.target.value; break;
+        //     //     case 'rule': finalValues.rule = e.target.value; break;
+        //     // }
+
+        //     generarContrasenia()
+        //     // if(input.value === "Solo letras") {
+        //     //     if ()
+        //     //     console.log(input.id)
+        //     // } 
+        // })   
     }
- 
-    
-    
-
-
 }
+
+
+// const generarContrasenia = () => {
+//     const rules = document.querySelectorAll('input[name="rules"');
+
+
+//     for(const rule of rules) {
+
+//     }
+// }
+
+
+/* Agregar atributo para que reconozca el nombre con el checkbox */
 
 createFieldset(charLength, 'length', 'radio', 'Longitud');
 createFieldset(optionRules, 'option', 'radio', 'Reglas');
 createFieldset(charType, 'charType', 'checkbox','Caracteres');
+
+
+
+// /**** 
+// ***** Cambie los appendChild de los btn, Cambie el for para tener el indice
+// *****/
+
+const arrayCharCode = (min, max) => {
+const array = [];
+for (let i = min; i <= max; i++) {
+    array.push(i);
+}
+return array;
+}
+
+const charUppercase = arrayCharCode(65, 90);
+const charLowercase = arrayCharCode(97, 122);
+const charNumbercase = arrayCharCode(48, 57);
+const charSymbolcase = arrayCharCode(33, 47).concat(arrayCharCode(58, 64)).concat(arrayCharCode(91, 96)).concat(arrayCharCode(123, 126));
+
+
+
+
+
+
+
+
+
+
+
+
+// const letras = document.getElementById("Solo letras");
+// const numeros = document.getElementById("Numeros");
+
+
+// if (letras.id === "Solo letras") {
+//     console.log('numeros')
+// }
