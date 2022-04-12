@@ -11,8 +11,8 @@ var formText = document.createTextNode("Personalice su contraseña");
 var pageTitle = document.createElement('h1');
 var pageText = document.createTextNode("Generador de contraseñas");
 divPasswordGenerated.appendChild(inputPassword);
-inputPassword.appendChild(btnCopy);
-inputPassword.appendChild(btnReset);
+divPasswordGenerated.appendChild(btnCopy);
+divPasswordGenerated.appendChild(btnReset);
 formTitle.appendChild(formText);
 divPaswordProperty.appendChild(formTitle);
 divPaswordProperty.appendChild(divForm);
@@ -30,6 +30,11 @@ divWrapper.appendChild(divPasswordGenerated);
 divWrapper.appendChild(divPaswordProperty);
 divContainer.appendChild(divWrapper);
 document.body.appendChild(divContainer);
+var finalValues = {
+    long: null,
+    rule: null,
+    char: []
+};
 var charLength = [12, 9, 6];
 var optionRules = ["Solo letras", "Lectura simple", "Todos los caracteres"];
 var charType = ["Mayusculas", "Minusculas", "Numeros", "Simbolos"];
@@ -42,13 +47,13 @@ var createFieldset = function (array, name, type, title) {
     var textTitle = document.createTextNode(title);
     fieldsetTitle.appendChild(textTitle);
     fieldset.appendChild(fieldsetTitle);
-    var contador = 0;
-    for (var _i = 0, array_1 = array; _i < array_1.length; _i++) {
-        var elem = array_1[_i];
+    for (var i = 0; i < array.length; i++) {
+        var elem = array[i];
         var div = document.createElement('div');
         var input = document.createElement('input');
         input.setAttribute('type', type);
-        input.setAttribute('value', 'elem');
+        input.setAttribute('id', elem);
+        input.setAttribute('value', elem);
         input.setAttribute('name', name);
         div.appendChild(input);
         fieldset.appendChild(div);
@@ -62,12 +67,48 @@ var createFieldset = function (array, name, type, title) {
         }
         label.appendChild(textLabel);
         div.appendChild(label);
-        if (contador === 0) {
+        if (i === 0) {
             input.setAttribute('checked', 'true');
         }
-        contador++;
+        // input.addEventListener('change', (e) => {
+        //     // switch(name) {
+        //     //     case 'long': finalValues.long = e.target.value; break;
+        //     //     case 'char': finalValues.char = e.target.value; break;
+        //     //     case 'rule': finalValues.rule = e.target.value; break;
+        //     // }
+        //     generarContrasenia()
+        //     // if(input.value === "Solo letras") {
+        //     //     if ()
+        //     //     console.log(input.id)
+        //     // } 
+        // })   
     }
 };
+// const generarContrasenia = () => {
+//     const rules = document.querySelectorAll('input[name="rules"');
+//     for(const rule of rules) {
+//     }
+// }
+/* Agregar atributo para que reconozca el nombre con el checkbox */
 createFieldset(charLength, 'length', 'radio', 'Longitud');
 createFieldset(optionRules, 'option', 'radio', 'Reglas');
 createFieldset(charType, 'charType', 'checkbox', 'Caracteres');
+// /**** 
+// ***** Cambie los appendChild de los btn, Cambie el for para tener el indice
+// *****/
+var arrayCharCode = function (min, max) {
+    var array = [];
+    for (var i = min; i <= max; i++) {
+        array.push(i);
+    }
+    return array;
+};
+var charUppercase = arrayCharCode(65, 90);
+var charLowercase = arrayCharCode(97, 122);
+var charNumbercase = arrayCharCode(48, 57);
+var charSymbolcase = arrayCharCode(33, 47).concat(arrayCharCode(58, 64)).concat(arrayCharCode(91, 96)).concat(arrayCharCode(123, 126));
+// const letras = document.getElementById("Solo letras");
+// const numeros = document.getElementById("Numeros");
+// if (letras.id === "Solo letras") {
+//     console.log('numeros')
+// }
