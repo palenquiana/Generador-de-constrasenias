@@ -8,12 +8,16 @@ var divPaswordProperty = document.createElement('div'); //cambiar nombre a uno q
 var divForm = document.createElement('div');
 var formTitle = document.createElement('h2');
 var formText = document.createTextNode("Personalice su contraseña");
+var pageTitle = document.createElement('h1');
+var pageText = document.createTextNode("Generador de contraseñas");
 divPasswordGenerated.appendChild(inputPassword);
 inputPassword.appendChild(btnCopy);
 inputPassword.appendChild(btnReset);
 formTitle.appendChild(formText);
 divPaswordProperty.appendChild(formTitle);
 divPaswordProperty.appendChild(divForm);
+pageTitle.appendChild(pageText);
+divContainer.appendChild(pageTitle);
 //Clases
 divContainer.classList.add('container');
 divWrapper.classList.add('box-wrapper');
@@ -21,6 +25,7 @@ divPasswordGenerated.classList.add('box', 'box-bg', 'box-psw');
 divPaswordProperty.classList.add('box', 'box-bg', 'box-property'); //no me convence el style del nombre de la clase
 inputPassword.classList.add('control-style');
 divForm.classList.add('box-form');
+pageTitle.classList.add('page-title');
 divWrapper.appendChild(divPasswordGenerated);
 divWrapper.appendChild(divPaswordProperty);
 divContainer.appendChild(divWrapper);
@@ -62,11 +67,6 @@ var createFieldset = function (array, name, type, title) {
         }
         contador++;
     }
-    // for (let i in array) {
-    //     if (array[0]) {
-    //         input 
-    //     }
-    // }
 };
 createFieldset(charLength, 'length', 'radio', 'Longitud');
 createFieldset(optionRules, 'option', 'radio', 'Reglas');
