@@ -83,22 +83,31 @@ const createFieldset = (array, name, type, title) => {
             input.setAttribute('checked','true'); 
         }
 
-        // input.addEventListener('change', (e) => {
-        //     // switch(name) {
-        //     //     case 'long': finalValues.long = e.target.value; break;
-        //     //     case 'char': finalValues.char = e.target.value; break;
-        //     //     case 'rule': finalValues.rule = e.target.value; break;
-        //     // }
+        input.addEventListener('change', (e) => {
+            e.preventDefault();
+            switch(name) {
+                case 'length': finalValues.long = input.value; break;
+                case 'option': finalValues.rule = input.value; break;
+                case 'charType': btnToggle(finalValues.char.push(input.value)); break;
+            }
+            console.log(finalValues.long, finalValues.char, finalValues.rule)
 
-        //     generarContrasenia()
-        //     // if(input.value === "Solo letras") {
-        //     //     if ()
-        //     //     console.log(input.id)
-        //     // } 
-        // })   
+            // generarContrasenia()
+
+        })   
     }
-}
 
+
+    // const generarContrasenia = (finalValues) => {
+    //     const password = [];
+    //     for (let i in finalValues.long) {
+
+    //     }
+    // }
+
+    const btnToggle = (e) => {
+        e.classList.toggle('false');
+    }
 
 // const generarContrasenia = () => {
 //     const rules = document.querySelectorAll('input[name="rules"');
@@ -107,7 +116,7 @@ const createFieldset = (array, name, type, title) => {
 //     for(const rule of rules) {
 
 //     }
-// }
+}
 
 
 /* Agregar atributo para que reconozca el nombre con el checkbox */
@@ -118,38 +127,29 @@ createFieldset(charType, 'charType', 'checkbox','Caracteres');
 
 
 
-// /**** 
-// ***** Cambie los appendChild de los btn, Cambie el for para tener el indice
-// *****/
-
-const arrayCharCode = (min, max) => {
-const array = [];
-for (let i = min; i <= max; i++) {
-    array.push(i);
-}
-return array;
-}
-
-const charUppercase = arrayCharCode(65, 90);
-const charLowercase = arrayCharCode(97, 122);
-const charNumbercase = arrayCharCode(48, 57);
-const charSymbolcase = arrayCharCode(33, 47).concat(arrayCharCode(58, 64)).concat(arrayCharCode(91, 96)).concat(arrayCharCode(123, 126));
 
 
-
-
-
-
-
-
-
-
-
-
-// const letras = document.getElementById("Solo letras");
-// const numeros = document.getElementById("Numeros");
-
-
-// if (letras.id === "Solo letras") {
-//     console.log('numeros')
+// const arrayCharCode = (min, max) => {
+// const array = [];
+// for (let i = min; i <= max; i++) {
+//     array.push(i);
 // }
+// return array;
+// }
+
+// const charUppercase = arrayCharCode(65, 90);
+// const charLowercase = arrayCharCode(97, 122);
+// const charNumbercase = arrayCharCode(48, 57);
+// const charSymbolcase = arrayCharCode(33, 47).concat(arrayCharCode(58, 64)).concat(arrayCharCode(91, 96)).concat(arrayCharCode(123, 126));
+
+// Para usar con fromCharCode
+
+
+
+
+
+
+
+
+
+

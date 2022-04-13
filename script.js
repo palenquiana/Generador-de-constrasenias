@@ -47,7 +47,7 @@ var createFieldset = function (array, name, type, title) {
     var textTitle = document.createTextNode(title);
     fieldsetTitle.appendChild(textTitle);
     fieldset.appendChild(fieldsetTitle);
-    for (var i = 0; i < array.length; i++) {
+    var _loop_1 = function (i) {
         var elem = array[i];
         var div = document.createElement('div');
         var input = document.createElement('input');
@@ -70,45 +70,52 @@ var createFieldset = function (array, name, type, title) {
         if (i === 0) {
             input.setAttribute('checked', 'true');
         }
-        // input.addEventListener('change', (e) => {
-        //     // switch(name) {
-        //     //     case 'long': finalValues.long = e.target.value; break;
-        //     //     case 'char': finalValues.char = e.target.value; break;
-        //     //     case 'rule': finalValues.rule = e.target.value; break;
-        //     // }
-        //     generarContrasenia()
-        //     // if(input.value === "Solo letras") {
-        //     //     if ()
-        //     //     console.log(input.id)
-        //     // } 
-        // })   
+        input.addEventListener('change', function (e) {
+            e.preventDefault();
+            switch (name) {
+                case 'length':
+                    finalValues.long = input.value;
+                    break;
+                case 'option':
+                    finalValues.rule = input.value;
+                    break;
+                case 'charType':
+                    btnToggle(finalValues.char.push(input.value));
+                    break;
+            }
+            console.log(finalValues.long, finalValues.char, finalValues.rule);
+            // generarContrasenia()
+        });
+    };
+    for (var i = 0; i < array.length; i++) {
+        _loop_1(i);
     }
+    // const generarContrasenia = (finalValues) => {
+    //     const password = [];
+    //     for (let i in finalValues.long) {
+    //     }
+    // }
+    var btnToggle = function (e) {
+        e.classList.toggle('false');
+    };
+    // const generarContrasenia = () => {
+    //     const rules = document.querySelectorAll('input[name="rules"');
+    //     for(const rule of rules) {
+    //     }
 };
-// const generarContrasenia = () => {
-//     const rules = document.querySelectorAll('input[name="rules"');
-//     for(const rule of rules) {
-//     }
-// }
 /* Agregar atributo para que reconozca el nombre con el checkbox */
 createFieldset(charLength, 'length', 'radio', 'Longitud');
 createFieldset(optionRules, 'option', 'radio', 'Reglas');
 createFieldset(charType, 'charType', 'checkbox', 'Caracteres');
-// /**** 
-// ***** Cambie los appendChild de los btn, Cambie el for para tener el indice
-// *****/
-var arrayCharCode = function (min, max) {
-    var array = [];
-    for (var i = min; i <= max; i++) {
-        array.push(i);
-    }
-    return array;
-};
-var charUppercase = arrayCharCode(65, 90);
-var charLowercase = arrayCharCode(97, 122);
-var charNumbercase = arrayCharCode(48, 57);
-var charSymbolcase = arrayCharCode(33, 47).concat(arrayCharCode(58, 64)).concat(arrayCharCode(91, 96)).concat(arrayCharCode(123, 126));
-// const letras = document.getElementById("Solo letras");
-// const numeros = document.getElementById("Numeros");
-// if (letras.id === "Solo letras") {
-//     console.log('numeros')
+// const arrayCharCode = (min, max) => {
+// const array = [];
+// for (let i = min; i <= max; i++) {
+//     array.push(i);
 // }
+// return array;
+// }
+// const charUppercase = arrayCharCode(65, 90);
+// const charLowercase = arrayCharCode(97, 122);
+// const charNumbercase = arrayCharCode(48, 57);
+// const charSymbolcase = arrayCharCode(33, 47).concat(arrayCharCode(58, 64)).concat(arrayCharCode(91, 96)).concat(arrayCharCode(123, 126));
+// Para usar con fromCharCode
