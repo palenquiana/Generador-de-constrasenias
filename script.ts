@@ -8,6 +8,8 @@ const divPaswordProperty = document.createElement('div'); //cambiar nombre a uno
 const divForm =document.createElement('div');
 const formTitle = document.createElement('h2');
 const formText = document.createTextNode("Personalice su contraseña");
+const pageTitle = document.createElement('h1');
+const pageText = document.createTextNode("Generador de contraseñas");
 
 divPasswordGenerated.appendChild(inputPassword);
 divPasswordGenerated.appendChild(btnCopy);
@@ -15,6 +17,8 @@ divPasswordGenerated.appendChild(btnReset);
 formTitle.appendChild(formText);
 divPaswordProperty.appendChild(formTitle);
 divPaswordProperty.appendChild(divForm);
+pageTitle.appendChild(pageText);
+divContainer.appendChild(pageTitle);
 
 
 //Clases
@@ -24,14 +28,11 @@ divPasswordGenerated.classList.add('box', 'box-bg', 'box-psw');
 divPaswordProperty.classList.add('box', 'box-bg', 'box-property'); //no me convence el style del nombre de la clase
 inputPassword.classList.add('control-style');
 divForm.classList.add('box-form');
+pageTitle.classList.add('page-title');
 
 divWrapper.appendChild(divPasswordGenerated);
 divWrapper.appendChild(divPaswordProperty);
-
-
 divContainer.appendChild(divWrapper);
-
-
 document.body.appendChild(divContainer);
 
 const finalValues = {
@@ -48,6 +49,7 @@ const charType = ["Mayusculas", "Minusculas", "Numeros", "Simbolos"];
 
 
 const createFieldset = (array, name, type, title) => {
+
     const form = document.createElement('form');
     divForm.appendChild(form);
     const fieldset = document.createElement('fieldset');
