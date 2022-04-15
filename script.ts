@@ -1,19 +1,29 @@
 const divContainer = document.createElement('div');
 const divWrapper = document.createElement('div');
-const divPasswordGenerated = document.createElement('div'); // sacar o no el div del nombre de la variable
+const divPasswordGenerated = document.createElement('div');
 const inputPassword = document.createElement('input');
 const btnCopy = document.createElement('button');
 const btnReset = document.createElement('button');
-const divPaswordProperty = document.createElement('div'); //cambiar nombre a uno que especifque es es el div del formulario
+const divPaswordProperty = document.createElement('div'); 
 const divForm =document.createElement('div');
 const formTitle = document.createElement('h2');
 const formText = document.createTextNode("Personalice su contraseña");
 const pageTitle = document.createElement('h1');
 const pageText = document.createTextNode("Generador de contraseñas");
+const imgCopy = document.createElement('img');
+const imgReset = document.createElement('img');
+imgCopy.setAttribute('src','./assets/outline_content_copy_black_24dp.png');
+imgReset.setAttribute('src', './assets/outline_restart_alt_black_24dp.png');
+inputPassword.setAttribute('type','text');
+inputPassword.setAttribute('size','20');
+
 
 divPasswordGenerated.appendChild(inputPassword);
-divPasswordGenerated.appendChild(btnCopy);
+divPasswordGenerated.appendChild(btnCopy); //revisar, no pude poner los btn con los iconos dentro del input password, solo aparecen si hago un appenchild con el divpassword
 divPasswordGenerated.appendChild(btnReset);
+
+btnCopy.appendChild(imgCopy);
+btnReset.appendChild(imgReset);
 formTitle.appendChild(formText);
 divPaswordProperty.appendChild(formTitle);
 divPaswordProperty.appendChild(divForm);
@@ -21,14 +31,18 @@ pageTitle.appendChild(pageText);
 divContainer.appendChild(pageTitle);
 
 
+
 //Clases
 divContainer.classList.add('container');
 divWrapper.classList.add('box-wrapper');
 divPasswordGenerated.classList.add('box', 'box-bg', 'box-psw');
-divPaswordProperty.classList.add('box', 'box-bg', 'box-property'); //no me convence el style del nombre de la clase
+divPaswordProperty.classList.add('box', 'box-bg', 'box-property'); 
 inputPassword.classList.add('control-style');
 divForm.classList.add('box-form');
 pageTitle.classList.add('page-title');
+btnCopy.classList.add('btn');
+btnReset.classList.add('btn');
+
 
 divWrapper.appendChild(divPasswordGenerated);
 divWrapper.appendChild(divPaswordProperty);
@@ -56,7 +70,6 @@ const charType = ["Mayusculas", "Minusculas", "Numeros", "Simbolos"];
 
 
 
-
 const createFieldset = (array, name, type, title) => {
 
     const form = document.createElement('form');
@@ -79,6 +92,7 @@ const createFieldset = (array, name, type, title) => {
         div.appendChild(input);
         fieldset.appendChild(div);
         const label = document.createElement('label');
+        label.setAttribute('for', elem);
         let textLabel;
         if (name === 'length') {
             textLabel = document.createTextNode(`${elem} caracteres`);

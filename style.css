@@ -28,7 +28,10 @@ body {
     align-items: center;
     justify-content: center;
 }
-
+.btn{
+    border:none;
+    background-color: whitesmoke;
+}
 .box-wrapper {
     display: flex;
     flex-direction: column;
@@ -52,11 +55,12 @@ body {
 }
 
 .control-style {
-    background-color:whitesmoke; 
+    background-color: whitesmoke;
     border: none;
-    padding: 15px 215px 15px 15px ; 
     outline: none;
     border-radius: 15px;
+    margin-right: 150px;
+    font-size: 25px;
 }
 
 .box-bg {
