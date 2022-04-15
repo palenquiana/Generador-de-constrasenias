@@ -79,6 +79,7 @@ var createFieldset = function (array, name, type, title) {
         }
         input.addEventListener('change', function (e) {
             e.preventDefault();
+
             if (input.value === "Solo letras") {
                 document.getElementById('Simbolos').setAttribute('disabled', 'true');
                 document.getElementById('Numeros').setAttribute('disabled', 'true');
@@ -86,6 +87,7 @@ var createFieldset = function (array, name, type, title) {
             else if (input.value === "Lectura simple") {
                 document.getElementById('Simbolos').setAttribute('disabled', 'true');
             }
+
             switch (name) {
                 case 'length':
                     finalValues.long = input.value;
@@ -94,16 +96,19 @@ var createFieldset = function (array, name, type, title) {
                     finalValues.rule = input.value;
                     break;
                 case 'charType':
+
                     finalValues.char.push(input.value);
                     break;
             }
             var passwordFinal = generarContrasenia(finalValues);
             inputPassword.value = passwordFinal;
+
         });
     };
     for (var i = 0; i < array.length; i++) {
         _loop_1(i);
     }
+
     var generarContrasenia = function (finalValues) {
         var caracteresFinales = "";
         var passwordFinal = [];
@@ -134,6 +139,8 @@ var createFieldset = function (array, name, type, title) {
 //     let input = document.getElementsByTagName('input');
 //     input.setAttribute()
 // })
+
+
 /* Agregar atributo para que reconozca el nombre con el checkbox */
 createFieldset(charLength, 'length', 'radio', 'Longitud');
 createFieldset(optionRules, 'option', 'radio', 'Reglas');

@@ -96,6 +96,7 @@ const createFieldset = (array, name, type, title) => {
         input.addEventListener('change', (e) => {
             e.preventDefault();
 
+
             if (input.value === "Solo letras") {
                 document.getElementById('Simbolos').setAttribute('disabled', 'true');
                 document.getElementById('Numeros').setAttribute('disabled', 'true');
@@ -126,6 +127,7 @@ const createFieldset = (array, name, type, title) => {
                 case 'Simbolos': caracteresFinales += caracteres.simbolos; break;
             }
         }
+        
 
             for (let i = 0; i < finalValues.long; i++) {
                 passwordFinal.push(caracteresFinales[Math.floor(Math.random() * caracteresFinales.length)]);
@@ -139,6 +141,7 @@ const createFieldset = (array, name, type, title) => {
     //     let input = document.getElementsByTagName('input');
     //     input.setAttribute()
     // })
+
 
 
 
