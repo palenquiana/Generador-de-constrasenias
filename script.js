@@ -31,9 +31,16 @@ divWrapper.appendChild(divPaswordProperty);
 divContainer.appendChild(divWrapper);
 document.body.appendChild(divContainer);
 var finalValues = {
+    caracteres: caracteres,
     long: null,
     rule: null,
     char: []
+};
+var caracteres = {
+    numeros: '0123456789',
+    simbolos: '!@#$%^&*()',
+    mayusculas: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
+    minusculas: 'abcdefghijklmnopqrstuvwxyz'
 };
 var charLength = [12, 9, 6];
 var optionRules = ["Solo letras", "Lectura simple", "Todos los caracteres"];
@@ -72,6 +79,13 @@ var createFieldset = function (array, name, type, title) {
         }
         input.addEventListener('change', function (e) {
             e.preventDefault();
+            if (input.value === "Solo letras") {
+                document.getElementById('Simbolos').setAttribute('disabled', 'true');
+                document.getElementById('Numeros').setAttribute('disabled', 'true');
+            }
+            else if (input.value === "Lectura simple") {
+                document.getElementById('Simbolos').setAttribute('disabled', 'true');
+            }
             switch (name) {
                 case 'length':
                     finalValues.long = input.value;
@@ -80,42 +94,47 @@ var createFieldset = function (array, name, type, title) {
                     finalValues.rule = input.value;
                     break;
                 case 'charType':
-                    btnToggle(finalValues.char.push(input.value));
+                    finalValues.char.push(input.value);
                     break;
             }
-            console.log(finalValues.long, finalValues.char, finalValues.rule);
-            // generarContrasenia()
+            var passwordFinal = generarContrasenia(finalValues);
+            inputPassword.value = passwordFinal;
         });
     };
     for (var i = 0; i < array.length; i++) {
         _loop_1(i);
     }
-    // const generarContrasenia = (finalValues) => {
-    //     const password = [];
-    //     for (let i in finalValues.long) {
-    //     }
-    // }
-    var btnToggle = function (e) {
-        e.classList.toggle('false');
+    var generarContrasenia = function (finalValues) {
+        var caracteresFinales = "";
+        var passwordFinal = [];
+        for (var _i = 0, _a = finalValues.char; _i < _a.length; _i++) {
+            var value = _a[_i];
+            switch (value) {
+                case 'Mayusculas':
+                    caracteresFinales += caracteres.mayusculas;
+                    break;
+                case 'Minusculas':
+                    caracteresFinales += caracteres.minusculas;
+                    break;
+                case 'Numeros':
+                    caracteresFinales += caracteres.numeros;
+                    break;
+                case 'Simbolos':
+                    caracteresFinales += caracteres.simbolos;
+                    break;
+            }
+        }
+        for (var i = 0; i < finalValues.long; i++) {
+            passwordFinal.push(caracteresFinales[Math.floor(Math.random() * caracteresFinales.length)]);
+        }
+        return passwordFinal.join('');
     };
-    // const generarContrasenia = () => {
-    //     const rules = document.querySelectorAll('input[name="rules"');
-    //     for(const rule of rules) {
-    //     }
 };
+// btnReset.addEventListener('click', () => {
+//     let input = document.getElementsByTagName('input');
+//     input.setAttribute()
+// })
 /* Agregar atributo para que reconozca el nombre con el checkbox */
 createFieldset(charLength, 'length', 'radio', 'Longitud');
 createFieldset(optionRules, 'option', 'radio', 'Reglas');
 createFieldset(charType, 'charType', 'checkbox', 'Caracteres');
-// const arrayCharCode = (min, max) => {
-// const array = [];
-// for (let i = min; i <= max; i++) {
-//     array.push(i);
-// }
-// return array;
-// }
-// const charUppercase = arrayCharCode(65, 90);
-// const charLowercase = arrayCharCode(97, 122);
-// const charNumbercase = arrayCharCode(48, 57);
-// const charSymbolcase = arrayCharCode(33, 47).concat(arrayCharCode(58, 64)).concat(arrayCharCode(91, 96)).concat(arrayCharCode(123, 126));
-// Para usar con fromCharCode
