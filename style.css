@@ -14,15 +14,16 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    flex-direction: column;
-}
-
-:root{
+    background: rgb(238, 174, 202);
     background: radial-gradient(circle, rgba(238, 174, 202, 1) 0%, rgba(148, 187, 233, 1) 100%);
+    width: 100vw;
+    height: 100vh;
+    flex-direction: column;
 }
 
 .box {
     border-radius: 15px;
+    width: 550px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -34,7 +35,6 @@ body {
 .box-wrapper {
     display: flex;
     flex-direction: column;
-    min-width: min(540px, 100%);
 }
 
 .box-psw {
@@ -45,7 +45,7 @@ body {
 }
 
 .box-property {
-    height: 230px;
+    min-height: 230px;
     display: flex;
     flex-direction: column;
 }
@@ -55,23 +55,21 @@ body {
 }
 
 .control-style {
-    background-color: whitesmoke;
+    background-color:whitesmoke;
     border: none;
     outline: none;
     border-radius: 15px;
-    width: 100%;
-    margin-right: 10px;
+    margin-right: 235px;
     font-size: 25px;
 }
 
 .box-bg {
     background-color: whitesmoke;
-    box-shadow:1px 1px 1px 1px rgba(0, 0, 0, 0.05);
+    box-shadow:1px 1px 1px 1px rgba(0, 0, 0, 0.06);
 }
 
 .page-title{
   font-size: 3em;
-  text-align: center;
 }
 
 fieldset{
@@ -80,3 +78,65 @@ fieldset{
 h2{
     margin:0;
 }
+ @media (max-width:700px){
+     .box-wrapper{
+         min-height: 500px;
+     }
+    .page-title{
+        font-size:40px;
+    }
+
+    .box {
+        width:200px;
+    }
+
+    .box-form{
+        display: flex;
+        flex-direction: column;
+        max-height:700px ;
+    }
+
+    .control-style {
+        font-size:10px;
+        margin-right:0px;
+  
+    }
+    .box-property{
+        padding: 15px;
+    }
+    .box-psw{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+ }
+
+ @media (max-width:500px){
+    .box-wrapper{
+        min-height: 500px;
+    }
+   .page-title{
+       font-size:30px;
+   }
+
+   .box {
+       border-radius: 15px;
+       width:200px;
+       display: flex;
+       align-items: center;
+       justify-content: center;
+   }
+
+   .box-form{
+       display: flex;
+       flex-direction: column;
+       max-height:700px ;
+   }
+
+   .control-style {
+       font-size: 10px;
+       margin-right:0px;
+   }
+}
+
+
