@@ -92,7 +92,9 @@ var createFieldset = function (array, name, type, title) {
             e.preventDefault();
             if (input.value === "Solo letras") {
                 document.getElementById('Simbolos').setAttribute('disabled', 'true');
+                document.getElementById('Simbolos').setAttribute('checked', 'false');
                 document.getElementById('Numeros').setAttribute('disabled', 'true');
+                document.getElementById('Numeros').setAttribute('checked', 'false');
             }
             else if (input.value === "Lectura simple") {
                 document.getElementById('Simbolos').setAttribute('disabled', 'true');
@@ -141,11 +143,16 @@ var createFieldset = function (array, name, type, title) {
         return passwordFinal.join('');
     };
 };
+// function toggle(checked) {
+//     let elm = document.getElementById('checkbox');
+//     if (checked != elm.checked) {
+//       elm.click();
+//     }
+//   }
 // btnReset.addEventListener('click', () => {
 //     let input = document.getElementsByTagName('input');
 //     input.setAttribute()
 // })
-/* Agregar atributo para que reconozca el nombre con el checkbox */
 createFieldset(charLength, 'length', 'radio', 'Longitud');
 createFieldset(optionRules, 'option', 'radio', 'Reglas');
 createFieldset(charType, 'charType', 'checkbox', 'Caracteres');
