@@ -1,18 +1,26 @@
 var divContainer = document.createElement('div');
 var divWrapper = document.createElement('div');
-var divPasswordGenerated = document.createElement('div'); // sacar o no el div del nombre de la variable
+var divPasswordGenerated = document.createElement('div');
 var inputPassword = document.createElement('input');
 var btnCopy = document.createElement('button');
 var btnReset = document.createElement('button');
-var divPaswordProperty = document.createElement('div'); //cambiar nombre a uno que especifque es es el div del formulario
+var divPaswordProperty = document.createElement('div');
 var divForm = document.createElement('div');
 var formTitle = document.createElement('h2');
 var formText = document.createTextNode("Personalice su contraseña");
 var pageTitle = document.createElement('h1');
 var pageText = document.createTextNode("Generador de contraseñas");
+var imgCopy = document.createElement('img');
+var imgReset = document.createElement('img');
+imgCopy.setAttribute('src', './assets/outline_content_copy_black_24dp.png');
+imgReset.setAttribute('src', './assets/outline_restart_alt_black_24dp.png');
+inputPassword.setAttribute('type', 'text');
+inputPassword.setAttribute('size', '20');
 divPasswordGenerated.appendChild(inputPassword);
-divPasswordGenerated.appendChild(btnCopy);
+divPasswordGenerated.appendChild(btnCopy); //revisar, no pude poner los btn con los iconos dentro del input password, solo aparecen si hago un appenchild con el divpassword
 divPasswordGenerated.appendChild(btnReset);
+btnCopy.appendChild(imgCopy);
+btnReset.appendChild(imgReset);
 formTitle.appendChild(formText);
 divPaswordProperty.appendChild(formTitle);
 divPaswordProperty.appendChild(divForm);
@@ -22,10 +30,12 @@ divContainer.appendChild(pageTitle);
 divContainer.classList.add('container');
 divWrapper.classList.add('box-wrapper');
 divPasswordGenerated.classList.add('box', 'box-bg', 'box-psw');
-divPaswordProperty.classList.add('box', 'box-bg', 'box-property'); //no me convence el style del nombre de la clase
+divPaswordProperty.classList.add('box', 'box-bg', 'box-property');
 inputPassword.classList.add('control-style');
 divForm.classList.add('box-form');
 pageTitle.classList.add('page-title');
+btnCopy.classList.add('btn');
+btnReset.classList.add('btn');
 divWrapper.appendChild(divPasswordGenerated);
 divWrapper.appendChild(divPaswordProperty);
 divContainer.appendChild(divWrapper);
@@ -65,6 +75,7 @@ var createFieldset = function (array, name, type, title) {
         div.appendChild(input);
         fieldset.appendChild(div);
         var label = document.createElement('label');
+        label.setAttribute('for', elem);
         var textLabel = void 0;
         if (name === 'length') {
             textLabel = document.createTextNode("".concat(elem, " caracteres"));
