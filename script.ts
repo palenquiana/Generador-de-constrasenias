@@ -4,7 +4,7 @@ const divPasswordGenerated = document.createElement('div');
 const inputPassword = document.createElement('input');
 const btnCopy = document.createElement('button');
 const btnReset = document.createElement('button');
-const divPaswordProperty = document.createElement('div'); 
+const divPasswordProperty = document.createElement('div'); 
 const divForm =document.createElement('div');
 const formTitle = document.createElement('h2');
 const formText = document.createTextNode("Personalice su contraseña");
@@ -25,8 +25,8 @@ divPasswordGenerated.appendChild(btnReset);
 btnCopy.appendChild(imgCopy);
 btnReset.appendChild(imgReset);
 formTitle.appendChild(formText);
-divPaswordProperty.appendChild(formTitle);
-divPaswordProperty.appendChild(divForm);
+divPasswordProperty.appendChild(formTitle);
+divPasswordProperty.appendChild(divForm);
 pageTitle.appendChild(pageText);
 divContainer.appendChild(pageTitle);
 
@@ -36,7 +36,7 @@ divContainer.appendChild(pageTitle);
 divContainer.classList.add('container');
 divWrapper.classList.add('box-wrapper');
 divPasswordGenerated.classList.add('box', 'box-bg', 'box-psw');
-divPaswordProperty.classList.add('box', 'box-bg', 'box-property'); 
+divPasswordProperty.classList.add('box', 'box-bg', 'box-property'); 
 inputPassword.classList.add('control-style');
 divForm.classList.add('box-form');
 pageTitle.classList.add('page-title');
@@ -45,7 +45,7 @@ btnReset.classList.add('btn');
 
 
 divWrapper.appendChild(divPasswordGenerated);
-divWrapper.appendChild(divPaswordProperty);
+divWrapper.appendChild(divPasswordProperty);
 divContainer.appendChild(divWrapper);
 document.body.appendChild(divContainer);
 

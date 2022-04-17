@@ -14,16 +14,15 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    background: rgb(238, 174, 202);
-    background: radial-gradient(circle, rgba(238, 174, 202, 1) 0%, rgba(148, 187, 233, 1) 100%);
-    width: 100vw;
-    height: 100vh;
     flex-direction: column;
+}
+
+:root{
+    background: radial-gradient(circle, rgba(238, 174, 202, 1) 0%, rgba(148, 187, 233, 1) 100%);
 }
 
 .box {
     border-radius: 15px;
-    width: 550px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -35,6 +34,7 @@ body {
 .box-wrapper {
     display: flex;
     flex-direction: column;
+    min-width: min(540px, 100%);
 }
 
 .box-psw {
@@ -59,7 +59,8 @@ body {
     border: none;
     outline: none;
     border-radius: 15px;
-    margin-right: 150px;
+    width: 100%;
+    margin-right: 10px;
     font-size: 25px;
 }
 
@@ -70,6 +71,7 @@ body {
 
 .page-title{
   font-size: 3em;
+  text-align: center;
 }
 
 fieldset{
