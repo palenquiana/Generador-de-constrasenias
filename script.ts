@@ -80,27 +80,6 @@ const createFieldset = (array: any[], name: string, type: string, title: string)
   fieldsetTitle.appendChild(textTitle);
   fieldset.appendChild(fieldsetTitle);
 
-  for (let i = 0; i < array.length; i++) {
-    const elem = array[i];
-    const div = document.createElement("div");
-    const input = document.createElement("input");
-    input.setAttribute("type", type);
-    input.setAttribute("id", elem);
-    input.setAttribute("value", elem);
-    input.setAttribute("name", name);
-    div.appendChild(input);
-    fieldset.appendChild(div);
-    const label = document.createElement("label");
-    label.setAttribute("for", elem);
-    let textLabel;
-    if (name === "length") {
-      textLabel = document.createTextNode(`${elem} caracteres`);
-    } else {
-      textLabel = document.createTextNode(`${elem}`);
-    }
-    label.appendChild(textLabel);
-    div.appendChild(label);
-
     for (let i = 0; i < array.length; i++) {
         const elem = array[i];
         const div = document.createElement('div');
@@ -123,61 +102,40 @@ const createFieldset = (array: any[], name: string, type: string, title: string)
         label.appendChild(textLabel);
         div.appendChild(label);
         
-        if (i === 0) {
-            input.setAttribute('checked','true'); 
-        }
 
-        input.addEventListener('change', (e) => {
+
+        input.addEventListener('change', (e: Event) => {
             e.preventDefault();
-
-
-            if (input.value === "Solo letras") {
+            const target = e.target as HTMLInputElement;
+            
+            if (target.value === "Solo letras") {
+              document.getElementById('Simbolos').removeAttribute('checked');
+              document.getElementById('Numeros').removeAttribute('checked');
                 document.getElementById('Simbolos').setAttribute('disabled', 'true');
-                document.getElementById('Simbolos').setAttribute('checked', 'false');
                 document.getElementById('Numeros').setAttribute('disabled', 'true');
-                document.getElementById('Numeros').setAttribute('checked', 'false');
-            } else if (input.value === "Lectura simple") {
+            } else if (target.value === "Lectura simple") {
+              document.getElementById('Simbolos').removeAttribute('checked');
                 document.getElementById('Simbolos').setAttribute('disabled', 'true');
+                document.getElementById('Numeros').removeAttribute('disabled');   
+            } else if (target.value === "Todos los caracteres") {
+              document.getElementById('Numeros').removeAttribute('disabled');
+              document.getElementById('Simbolos').removeAttribute('disabled');
             }
 
             switch(name) {
-                case 'length': finalValues.long = input.value; break;
-                case 'option': finalValues.rule = input.value; break;
-                case 'charType': finalValues.char.push(input.value); break;
-            }
+                case 'length': finalValues.long = target.value; break;
+                case 'option': finalValues.rule = target.value; break;
+                case 'charType': if (target.checked) {finalValues.char.push(target.value)
+                    } else {
+                            let index = finalValues.char.indexOf(target.value);
+                            finalValues.char.splice(index, 1)}; break;
+                           }
 
+    
             const passwordFinal = generarContrasenia(finalValues);
             inputPassword.value = passwordFinal;
         })  
     }
-
-    input.addEventListener("change", (e) => {
-      e.preventDefault();
-
-      if (input.value === "Solo letras") {
-        document.getElementById("Simbolos").setAttribute("disabled", "true");
-        document.getElementById("Numeros").setAttribute("disabled", "true");
-      } else if (input.value === "Lectura simple") {
-        document.getElementById("Simbolos").setAttribute("disabled", "true");
-      }
-
-      switch (name) {
-        case "length":
-          finalValues.long = input.value;
-          break;
-        case "option":
-          finalValues.rule = input.value;
-          break;
-        case "charType":
-          finalValues.char.push(input.value);
-          break;
-      }
-     
-
-      const passwordFinal = generarContrasenia(finalValues);
-      inputPassword.value = passwordFinal;
-    });
-  }
 };
 
 const generarContrasenia = (finalValues) => {
@@ -206,18 +164,6 @@ const generarContrasenia = (finalValues) => {
     );
   }
 
-
-    // function toggle(checked) {
-    //     let elm = document.getElementById('checkbox');
-    //     if (checked != elm.checked) {
-    //       elm.click();
-    //     }
-    //   }
-
-    // btnReset.addEventListener('click', () => {
-    //     let input = document.getElementsByTagName('input');
-    //     input.setAttribute()
-    // })
 
   return passwordFinal.join("");
 };
