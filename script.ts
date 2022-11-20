@@ -52,18 +52,18 @@ divWrapper.appendChild(divPasswordProperty);
 divContainer.appendChild(divWrapper);
 document.body.appendChild(divContainer);
 
-const finalValues = {
-  caracteres,
-  long: null,
-  rule: null,
-  char: [],
-};
-
 var caracteres = {
   numeros: "0123456789",
   simbolos: "!@#$%^&*()",
   mayusculas: "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
   minusculas: "abcdefghijklmnopqrstuvwxyz",
+};
+
+const finalValues = {
+  caracteres,
+  long: null,
+  rule: null,
+  char: [],
 };
 
 const charLength = [12, 9, 6];
@@ -109,17 +109,17 @@ const createFieldset = (array: any[], name: string, type: string, title: string)
             const target = e.target as HTMLInputElement;
             
             if (target.value === "Solo letras") {
-              document.getElementById('Simbolos').removeAttribute('checked');
-              document.getElementById('Numeros').removeAttribute('checked');
-                document.getElementById('Simbolos').setAttribute('disabled', 'true');
-                document.getElementById('Numeros').setAttribute('disabled', 'true');
+              document.getElementById('Simbolos')?.removeAttribute('checked');
+              document.getElementById('Numeros')?.removeAttribute('checked');
+                document.getElementById('Simbolos')?.setAttribute('disabled', 'true');
+                document.getElementById('Numeros')?.setAttribute('disabled', 'true');
             } else if (target.value === "Lectura simple") {
-              document.getElementById('Simbolos').removeAttribute('checked');
-                document.getElementById('Simbolos').setAttribute('disabled', 'true');
-                document.getElementById('Numeros').removeAttribute('disabled');   
+              document.getElementById('Simbolos')?.removeAttribute('checked');
+                document.getElementById('Simbolos')?.setAttribute('disabled', 'true');
+                document.getElementById('Numeros')?.removeAttribute('disabled');   
             } else if (target.value === "Todos los caracteres") {
-              document.getElementById('Numeros').removeAttribute('disabled');
-              document.getElementById('Simbolos').removeAttribute('disabled');
+              document.getElementById('Numeros')?.removeAttribute('disabled');
+              document.getElementById('Simbolos')?.removeAttribute('disabled');
             }
 
             switch(name) {
